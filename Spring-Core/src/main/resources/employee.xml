@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Employee emp = new Employee("Raja",01,"Indore"); first object -->
+	<bean id="emp" class="com.rays.Employee">
+	<constructor-arg value="Raja" >  </constructor-arg>
+	<constructor-arg value="01" >  </constructor-arg>
+	<constructor-arg value="Indore" >  </constructor-arg>
+	
+	</bean>
+	
+	<!-- Second Object -->
+	<bean id="emp1" class="com.rays.Employee">
+	<constructor-arg value="Kajal" > </constructor-arg>
+	<constructor-arg value="02" >  </constructor-arg>
+	<constructor-arg value="Bhopal" >  </constructor-arg>
+	
+	</bean>
+	
+	<!-- Third Object -->
+	<bean id="emp3" class="com.rays.Employee">
+	<constructor-arg value="Bhola" >  </constructor-arg>
+	<constructor-arg value="03" >  </constructor-arg>
+	<constructor-arg value="Sagar" >  </constructor-arg>
+	
+	</bean>
+	
+	</beans>
