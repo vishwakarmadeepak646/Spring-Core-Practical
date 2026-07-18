@@ -1,14 +1,12 @@
-package com.rays.autowire.byname;
+package com.rays.autowire.bytype;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component("byNamee")
+@Component("byType")
 public class UserService {
 	
 	@Autowired
-	@Qualifier("byName")
 	private UserDaoInterface userDao;
 	
 	public void add() {

@@ -1,16 +1,18 @@
-package com.rays.autowire.byname;
+package com.rays.autowire.byconstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component("byNamee")
+@Component("byConstructor")
 public class UserService {
 	
-	@Autowired
-	@Qualifier("byName")
 	private UserDaoInterface userDao;
-	
+
+	@Autowired
+	public UserService(UserDaoInterface userDao) {
+		this.userDao = userDao;
+	}
+
 	public void add() {
 		userDao.add();
 	}

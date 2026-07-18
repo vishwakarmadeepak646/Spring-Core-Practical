@@ -1,19 +1,17 @@
-package com.rays.autowire.byname;
+package com.rays.autowire.BySetter;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.rays.AppConfig;
 
-public class TestByName {
+public class TestBySetter {
 
 	public static void main(String[] args) {
+	ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		
-		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-		
-		UserService s =  context.getBean("byNamee", UserService.class);
+		UserService s =  context.getBean("bySetter", UserService.class);
 		
 		s.add();
-		
 	}
 }

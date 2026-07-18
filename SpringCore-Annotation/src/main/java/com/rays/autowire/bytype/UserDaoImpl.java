@@ -1,8 +1,8 @@
-package com.rays.autowire.byname;
+package com.rays.autowire.bytype;
 
 import org.springframework.stereotype.Component;
 
-@Component("byName")
+@Component("byTypee")
 public class UserDaoImpl implements UserDaoInterface  {
 
 	public void add() {

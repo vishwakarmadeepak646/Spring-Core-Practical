@@ -1,8 +1,9 @@
-package com.rays.autowire.byname;
+package com.rays.autowire.byconstructor;
 
 import org.springframework.stereotype.Component;
 
-@Component("byName")
+//@Component("bycons")  OR we can use below one as well
+@Component
 public class UserDaoImpl implements UserDaoInterface  {
 
 	public void add() {
