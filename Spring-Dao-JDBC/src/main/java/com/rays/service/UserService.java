@@ -16,4 +16,14 @@ public class UserService {
 
 		return dao.add(dto);
 	}
+	
+	public int update(UserDto dto) {
+
+		return dao.update(dto);
+	}
+	
+	public int delete(UserDto dto) {
+
+		return dao.delete(dto);
+	}
 }
