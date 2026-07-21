@@ -1,5 +1,8 @@
 package com.rays.test;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,15 +23,55 @@ public class TestUser {
 
 		TestUser test = context.getBean("TestUser", TestUser.class);
 
-		test.testAdd();
+	//	test.testAdd();
 	//	test.testUpdate();
 	//	test.testDelete();
+	//	test.testFindByPk();
+		test.search();
 }
+
+	private void search() {
+		
+		UserDto d = new UserDto();
+		
+	//	d.setFirstName("deepak");
+		
+		List<UserDto> list = service.search(d, 1, 2);
+		
+		Iterator<UserDto> it = list.iterator();
+		
+		while(it.hasNext()) {
+			UserDto dto = it.next();
+			
+			System.out.println(dto.getId());
+			System.out.println(dto.getFirstName());
+			System.out.println(dto.getLastName());
+			System.out.println(dto.getLogin());
+			System.out.println(dto.getPassword());
+		}
+		
+	}
+
+	private void testFindByPk() {
+		
+		UserDto dto = service.authenticate("deepak@gmail.com", "aa");
+		
+		if(dto !=null) {
+		System.out.println(dto.getId());
+		System.out.println(dto.getFirstName());
+		System.out.println(dto.getLastName());
+		System.out.println(dto.getLogin());
+		System.out.println(dto.getPassword());
+		}else {
+			System.out.println("No Record found...");
+		}
+		
+	}
 
 	private void testAdd() {
 
 		UserDto dto = new UserDto();
-		dto.setId(2);
+		dto.setId(1);
 		dto.setFirstName("Deepak");
 		dto.setLastName("vishwakarma");
 		dto.setLogin("deepak@gmail.com");
@@ -43,14 +86,14 @@ public class TestUser {
 
 		UserDto dto = new UserDto();
 		dto.setId(2);
-		dto.setFirstName("Kapil");
+		dto.setFirstName("Harsh");
 		dto.setLastName("vishwakarma");
 		dto.setLogin("deepak@gmail.com");
 		dto.setPassword("aa");
 		
-		int id = service.update(dto);
+		service.update(dto);
 
-		System.out.println("data updated successfully at id: " + id);
+	
 	}
 	
 	private void testDelete() {
@@ -58,9 +101,8 @@ public class TestUser {
 		UserDto dto = new UserDto();
 		dto.setId(2);
 		
-		int id = service.update(dto);
+		service.delete(dto);
 
-		System.out.println("data delted successfully at id: " + id);
 		
 		
 		// Doubt : From DB data is deleted but id is present

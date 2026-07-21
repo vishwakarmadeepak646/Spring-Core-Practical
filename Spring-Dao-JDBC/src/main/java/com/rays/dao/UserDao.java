@@ -1,5 +1,7 @@
 package com.rays.dao;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,22 +31,60 @@ public class UserDao {
 
 	}
 
-	public int update(UserDto dto) {
+	public void update(UserDto dto) {
 
 		String sql = "update st_user set firstName = ? , lastName = ?, login = ?, password = ? where id = ? ";
 
-		jdbcTemplet.update(sql, dto.getFirstName(), dto.getLastName(), dto.getLogin(), dto.getPassword(), dto.getId());
+		int i = jdbcTemplet.update(sql, dto.getFirstName(), dto.getLastName(), dto.getLogin(), dto.getPassword(),
+				dto.getId());
 
-		return dto.getId();
+		System.out.print("Data updated successfully " + i);
 	}
 
-	public int delete(UserDto dto) {
+	public void delete(UserDto dto) {
 
 		String sql = "delete from st_user where id = ? ";
 
-		jdbcTemplet.update(sql, dto.getId());
+		int i = jdbcTemplet.update(sql, dto.getId());
 
-		return dto.getId();
+		System.out.print("Data updated successfully " + i);
+	}
+
+	public UserDto findByLogin(String login) {
+
+		String sql = "select * from st_user where login=?";
+
+		Object[] param = { login };
+
+		UserDto dto = jdbcTemplet.queryForObject(sql, param, new UserMapper());
+
+		return dto;
+
+	}
+
+	public List<UserDto> search(UserDto dto, int pageNo, int pageSize) {
+
+		StringBuffer sql = new StringBuffer("select * from st_user where 1=1 ");
+
+		if (dto != null) {
+			if (dto.getFirstName() != null && dto.getFirstName().length() > 0) {
+				sql.append(" and firstName like '" + dto.getFirstName() + "%'");
+			}
+
+			if (dto.getLogin() != null && dto.getLogin().length() > 0) {
+				sql.append(" and login like '" + dto.getLogin() + "%'");
+			}
+		}
+
+		if (pageSize > 0) {
+			pageNo = (pageNo - 1) * pageSize;
+			sql.append(" limit " + pageNo + " , " + pageSize);
+		}
+
+		List<UserDto> list = jdbcTemplet.query(sql.toString(), new UserMapper());
+
+		return list;
+
 	}
 
 }
