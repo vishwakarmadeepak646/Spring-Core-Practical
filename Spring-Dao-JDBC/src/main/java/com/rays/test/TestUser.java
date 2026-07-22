@@ -36,7 +36,7 @@ public class TestUser {
 		
 	//	d.setFirstName("deepak");
 		
-		List<UserDto> list = service.search(d, 1, 2);
+		List<UserDto> list = service.search(d, 1, 5);
 		
 		Iterator<UserDto> it = list.iterator();
 		
@@ -48,6 +48,7 @@ public class TestUser {
 			System.out.println(dto.getLastName());
 			System.out.println(dto.getLogin());
 			System.out.println(dto.getPassword());
+			System.out.println("-----------");
 		}
 		
 	}
@@ -71,10 +72,10 @@ public class TestUser {
 	private void testAdd() {
 
 		UserDto dto = new UserDto();
-		dto.setId(1);
-		dto.setFirstName("Deepak");
+		dto.setId(2);
+		dto.setFirstName("Ramesh");
 		dto.setLastName("vishwakarma");
-		dto.setLogin("deepak@gmail.com");
+		dto.setLogin("ramesh@gmail.com");
 		dto.setPassword("aa");
 		
 		int id = service.add(dto);

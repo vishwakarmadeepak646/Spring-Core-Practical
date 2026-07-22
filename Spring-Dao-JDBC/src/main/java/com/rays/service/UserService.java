@@ -18,12 +18,24 @@ public class UserService {
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public int add(UserDto dto) {
+		
+		UserDto existBean = dao.findByLogin(dto.getLogin());
+		
+		if(existBean != null && (dto.getId() != existBean.getId())) {
+			throw new RuntimeException("User login id already exist" + dto.getLogin());
+		}
 
 		return dao.add(dto);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(UserDto dto) {
+		
+		UserDto existBean = dao.findByLogin(dto.getLogin());
+		
+		if(existBean != null && (dto.getId() != existBean.getId())) {
+			throw new RuntimeException("User login id already exist" + dto.getLogin());
+		}
 
 		dao.update(dto);
 	}
