@@ -33,7 +33,7 @@ public class UserService {
 		System.out.println("Data deleted successfully");
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true) 
 	public UserDTO findById(int i) {
 
 		return dao.findByPK(i);

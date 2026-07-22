@@ -5,15 +5,16 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.rays.DTO.StockDTO;
 import com.rays.DTO.UserDTO;
 
 @Repository
-public class UserDao {
+public class StockDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public int add(UserDTO dto) {
+	public int add(StockDTO dto) {
 
 		Session session = sessionFactory.getCurrentSession();
 
@@ -22,29 +23,21 @@ public class UserDao {
 		return dto.getId();
 	}
 
-	public void update(UserDTO dto) {
-
+	public void update(StockDTO dto) {
 		Session session = sessionFactory.getCurrentSession();
 
 		session.update(dto);
 	}
 
 	public void delete(int id) {
-
 		Session session = sessionFactory.getCurrentSession();
 
-		UserDTO dto = findByPK(id);
-
-		session.delete(dto);
+		session.delete(findByPk(id));
 	}
 
-	public UserDTO findByPK(int id) {
-
+	public StockDTO findByPk(int id) {
 		Session session = sessionFactory.getCurrentSession();
 
-		UserDTO dto = session.get(UserDTO.class, id); // UserDTO.class act as a Result set and It store data whole data of id in it.
-
-		return dto;
+		return session.get(StockDTO.class, id);
 	}
-
 }

@@ -23,7 +23,7 @@ public class TestUser {
 	//	test.add();
 	//	test.update();
 	//	test.delete();
-		test.findByPk();
+	//	test.findByPk();
 	}
 
 	private void add() {
@@ -33,8 +33,7 @@ public class TestUser {
 		dto.setLogin("rahul@example.com");
 		dto.setPassword("aa");
 		
-		service.save(dto);
-		
+		service.save(dto); 
 	}
 	
 	private void update() {
