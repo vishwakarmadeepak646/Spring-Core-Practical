@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Asus
+Build-Jdk: 21.0.5
+Implementation-Title: SpringBootProject
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.rays
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/SpringBootProject
+Created-By: Maven Integration for Eclipse
+
