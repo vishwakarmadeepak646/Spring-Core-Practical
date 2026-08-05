@@ -2,47 +2,34 @@ package com.rays.form;
 
 import java.util.Date;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.rays.common.BaseDTO;
 import com.rays.common.BaseForm;
 import com.rays.dto.UserDTO;
 
-public class UserForm extends BaseForm {
+public class UserRegistrationForm extends BaseForm {
 
-	@NotEmpty(message = "first name is required")
+	@NotEmpty(message = "firstName is required")
 	private String firstName;
 
-	@NotEmpty(message = "last name is required")
+	@NotEmpty(message = "lastName is required")
 	private String lastName;
 
-	@NotEmpty(message = "Login id is required")
-	@Email
-	private String login;
+	@NotEmpty(message = "loginId is required")
+	private String loginId;
 
 	@NotEmpty(message = "password is required")
 	private String password;
 
-	@NotNull(message = "Date of Birth is required")
+	@NotNull(message = "Date of birth is required")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dob;
 
-	@NotNull(message = "role is required")
-	private Long roleId;
-
-	@NotEmpty(message = "roleName is required")
-	private String roleName;
-
-	public UserForm() {
-	}
-
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public UserRegistrationForm() {
 	}
 
 	public String getFirstName() {
@@ -61,12 +48,12 @@ public class UserForm extends BaseForm {
 		this.lastName = lastName;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getLoginId() {
+		return loginId;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	public String getPassword() {
@@ -85,25 +72,16 @@ public class UserForm extends BaseForm {
 		this.dob = dob;
 	}
 
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
-
 	@Override
 	public BaseDTO getDto() {
+		UserDTO dto = new UserDTO();
 
-		UserDTO dto = (UserDTO) initDTO(new UserDTO());
 		dto.setFirstName(firstName);
 		dto.setLastName(lastName);
-		dto.setLogin(login);
+		dto.setLogin(loginId);
 		dto.setPassword(password);
 		dto.setDob(dob);
-		dto.setRoleId(roleId);
-		dto.setRoleName(roleName);
+		dto.setRoleId(2L);
 		return dto;
 	}
 }

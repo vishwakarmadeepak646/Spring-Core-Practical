@@ -1,5 +1,7 @@
 package com.rays.ctl;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +94,21 @@ public class UserCtl extends BaseCtl {
 			res.addData(dto);
 		}
 
+		return res;
+	}
+
+	@PostMapping("search/{pageNo}")
+	public ORSResponse search(@RequestBody UserForm form, @PathVariable int pageNo) {
+		ORSResponse res = new ORSResponse();
+		UserDTO dto = (UserDTO) form.getDto();
+		int pageSize = 5;
+		List<UserDTO> list = service.search(dto, pageNo, pageSize);
+		if (list != null && list.size() > 0) {
+			res.setSuccess(true);
+			res.addData(list);
+		} else {
+			res.addMessage("record not found");
+		}
 		return res;
 	}
 
