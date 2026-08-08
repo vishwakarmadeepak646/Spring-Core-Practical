@@ -1,0 +1,26 @@
+
+<div align="center">
+    <h1>Login</h1>
+    <h1 style="color: red;">{{form.errorMsg}}</h1>
+  <form (submit)="signIn()">
+   <table>
+
+            <tr>
+                <th>Login</th>
+                <td><input type="text" name="loginId" [(ngModel)]="form.loginId" placeholder="Enter your login"></td>
+            </tr>
+
+            <tr>
+                <th>Password</th>
+                <td><input type="password" name="password" [(ngModel)]="form.password"
+                        placeholder="Enter your password"></td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td><input type="submit" value="signin"></td>
+            </tr>
+
+        </table>
+  </form>
+  </div>
